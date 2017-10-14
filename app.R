@@ -57,8 +57,11 @@ ui <- fluidPage(
                                        "NVMe SSD RAID (<= 2.5 GB/s)" = 2,
                                        "SATA SSD (750 MB/s)" = 3,
                                        "SATA SSD RAID (<= 1.5 GB/s)" = 4,
-                                       "Ramdisk (link-limited)" = 5),
-                        selected = 3),
+                                       "SATA HDD (100 MB/s)" = 5,
+                                       "2x SATA HDD RAID (<= 200 MB/s)" = 6,
+                                       "4x SATA HDD RAID (<= 400 MB/s)" = 7,
+                                       "Ramdisk (link-limited)" = 8),
+                        selected = 5),
             selectInput("network_link_Gb", label = h3("Network link (slowest)"),
                         choices = list("1 Gb/s" = 1,
                                        "10 Gb/s" = 2,
@@ -141,11 +144,14 @@ server <- function(input, output, session) {
             )
 
         disk_speed <- switch(input$disk_speed_GB,
-                                "1" = 1.2,   # "NVMe SSD (~1.2 GB/s)" = 1.2,
-                                "2" = 2.5,   # "NVMe SSD RAID (<= 2.5 GB/s)" = 2.5,
-                                "3" = 0.750, # "SATA SSD (750 MB/s)" = .750,
-                                "4" = 1.5,   # SATA SSD RAID (<= 1.5 GB/s)" = 1.5,
-                                "5" = Inf    # "Ramdisk (link-limited)" = Inf),
+                                "1" = 1.2,    # "NVMe SSD (~1.2 GB/s)" = 1.2,
+                                "2" = 2.5,    # "NVMe SSD RAID (<= 2.5 GB/s)" = 2.5,
+                                "3" = 0.750,  # "SATA SSD (750 MB/s)" = .750,
+                                "4" = 1.5,    # SATA SSD RAID (<= 1.5 GB/s)" = 1.5,
+                                "5" = 0.100,  # SATA HDD ,
+                                "6" = 0.200,  # 2x SATA HDD RAID,
+                                "7" = 0.400,  # 4x SATA HDD RAID,
+                                "8" = Inf     # "Ramdisk (link-limited)" = Inf),
         ) * 8 # change to Gb/s
 
         network_link <- switch(input$network_link_Gb,
