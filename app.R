@@ -9,6 +9,7 @@
 # Shyam Saladi (saladi@caltech.edu)
 # March 2017
 
+library(gdata)
 library(tidyverse)
 library(shiny)
 
