@@ -7,7 +7,9 @@
 #    http://shiny.rstudio.com/
 #
 # Shyam Saladi (saladi@caltech.edu)
-# March 2017
+# October 2017
+#
+# to deploy app: rsconnect::deployApp()
 
 library(gdata)
 library(tidyverse)
