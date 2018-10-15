@@ -1,0 +1,4 @@
+Title: EM Data Requirements
+Version: 1.0
+Depends: R (>= 3.1.0)
+LazyData: true

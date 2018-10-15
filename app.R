@@ -1,26 +1,23 @@
 #
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
+# EM Data Requirements
+# 
+# A back of the envelope calculation for your bigger-than-an-envelope
+# microscope and data
 #
 # Shyam Saladi (saladi@caltech.edu)
 # October 2017
 #
-# to deploy app: rsconnect::deployApp()
 
 library(gdata)
 library(tidyverse)
 library(shiny)
 
-# Define UI for application that draws a histogram
 ui <- fluidPage(
-   # Application title
+   tags$head(includeScript("google_analytics.js")),
+   includeHTML("github_corner.html"),
    titlePanel("EM Microscope Data"),
 
-   # Sidebar with sliders that demonstrate various available options
+   # Sliders that demonstrate various available options
    fluidRow(
        column(4,
      # dataset size
@@ -77,7 +74,6 @@ ui <- fluidPage(
 
      hr(),
 
-      # Show a plot of the generated distribution
       fluidRow(
           column(3,
                  h4("Collection Statistics"),
